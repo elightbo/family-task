@@ -5,4 +5,3 @@ $app = new Silex\Application();
 $app['debug'] = true;
 
 $app->post('/family', 'FamilyTask\Controller\FamilyController::createAction');
-return $app;
