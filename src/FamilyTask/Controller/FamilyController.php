@@ -20,6 +20,6 @@ class FamilyController
      */
     public function createAction(Request $request, Application $app)
     {
-
+        return 'hi';
     }
 }
