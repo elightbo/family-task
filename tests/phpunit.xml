@@ -8,11 +8,11 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="./../tests/bootstrap.php"
+         bootstrap="./bootstrap.php"
 >
     <testsuites>
         <testsuite name="Family Task Test Suite">
-            <directory>./../tests/</directory>
+            <directory>./tests/</directory>
         </testsuite>
     </testsuites>
 

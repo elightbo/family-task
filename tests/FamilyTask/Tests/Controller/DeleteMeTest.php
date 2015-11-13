@@ -1,12 +1,13 @@
 <?php
-namespace FamilyTask\Test;
+namespace FamilyTask\Test\Controller;
 
 /**
  * Delete me
  */
 class DeleteMeTest extends \PHPUnit_Framework_TestCase
 {
-    public function testTrueStillEqualsTrue()
+
+    public function testSomething()
     {
         $this->assertTrue(true);
     }
