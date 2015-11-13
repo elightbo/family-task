@@ -1,5 +1,5 @@
 <?php
-namespace FamilyTask\Test\Controller;
+namespace FamilyTask\Tests\Controller;
 
 /**
  * Delete me
