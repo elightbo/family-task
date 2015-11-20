@@ -3,7 +3,6 @@ php:
   - 5.5
   - 5.6
   - 7.0
-  - hhvm
 # whitelist
 branches:
   only:
@@ -14,9 +13,3 @@ before_script:
   - echo 'error_reporting = E_ALL & ~E_STRICT' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
 script: phpunit --configuration tests/phpunit.xml --coverage-text
-
-matrix:
-  allow_failures:
-    - php: 5.6
-    - php: 7.0
-    - php: hhvm
