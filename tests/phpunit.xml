@@ -12,7 +12,7 @@
 >
     <testsuites>
         <testsuite name="Family Task Test Suite">
-            <directory>./../tests/</directory>
+            <directory>./</directory>
         </testsuite>
     </testsuites>
 
