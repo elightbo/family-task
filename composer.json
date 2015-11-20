@@ -1,6 +1,7 @@
 {
   "require": {
-    "silex/silex": "~1.3"
+    "silex/silex": "~2.0@dev",
+    "dflydev/doctrine-orm-service-provider": "~2.0@dev"
   },
   "require-dev": {
     "phpunit/phpunit": "5.0.*",
