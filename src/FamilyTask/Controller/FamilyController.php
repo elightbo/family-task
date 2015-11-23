@@ -20,6 +20,7 @@ class FamilyController
      */
     public function createAction(Request $request, Application $app)
     {
+        var_dump($app['orm.em']); die;
         return 'hi';
     }
 }
