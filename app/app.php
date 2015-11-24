@@ -3,33 +3,31 @@ use Silex\Application;
 use Silex\Provider\DoctrineServiceProvider;
 use Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $app = new Application();
+$app['debug'] = true;
 
-$app->register(new DoctrineServiceProvider, array(
-    "db.options" => array(
+$app->register(new DoctrineServiceProvider, [
+    "db.options" => [
         "driver" => "pdo_mysql",
         "user" => "root",
         "password" => "",
-    ),
-));
+    ],
+]);
 
 $app->register(new DoctrineOrmServiceProvider, [
-    "orm.proxies_dir" => __DIR__."/../src/FamilyTask/Proxy/",
+    "orm.proxies_dir" => __DIR__ . "/../src/FamilyTask/Proxy/",
     "orm.em.options" => [
         "mappings" => [
             [
                 "type" => "annotation",
-                "namespace" => "FamilyTask\Entity",
-                "path" => __DIR__."/../src/FamilyTask/Entity/",
+                "namespace" => "FamilyTask\\Entity",
+                "path" => __DIR__ . "/../src/FamilyTask/Entity",
             ],
         ],
     ],
 ]);
-
-
-$app['debug'] = true;
 
 $app->post('/family', 'FamilyTask\Controller\FamilyController::createAction');
 
