@@ -15,18 +15,18 @@ $app->register(new DoctrineServiceProvider, array(
     ),
 ));
 
-$app->register(new DoctrineOrmServiceProvider, array(
+$app->register(new DoctrineOrmServiceProvider, [
     "orm.proxies_dir" => __DIR__."/../src/FamilyTask/Proxy/",
-    "orm.em.options" => array(
-        "mappings" => array(
-            array(
+    "orm.em.options" => [
+        "mappings" => [
+            [
                 "type" => "annotation",
                 "namespace" => "FamilyTask\Entity",
                 "path" => __DIR__."/../src/FamilyTask/Entity/",
-            ),
-        ),
-    ),
-));
+            ],
+        ],
+    ],
+]);
 
 
 $app['debug'] = true;
