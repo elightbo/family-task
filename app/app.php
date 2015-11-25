@@ -1,9 +1,10 @@
 <?php
 use Silex\Application;
 use Silex\Provider\DoctrineServiceProvider;
-use Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$loader = require __DIR__ . '/../vendor/autoload.php';
+\Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 $app = new Application();
 $app['debug'] = true;
@@ -22,12 +23,15 @@ $app->register(new DoctrineOrmServiceProvider, [
         "mappings" => [
             [
                 "type" => "annotation",
+                "use_simple_annotation_reader" => false,
                 "namespace" => "FamilyTask\\Entity",
                 "path" => __DIR__ . "/../src/FamilyTask/Entity",
             ],
         ],
     ],
 ]);
+
+$app->register(new Sorien\Provider\PimpleDumpProvider());
 
 $app->post('/family', 'FamilyTask\Controller\FamilyController::createAction');
 

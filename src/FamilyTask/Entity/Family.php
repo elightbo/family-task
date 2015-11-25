@@ -1,13 +1,15 @@
 <?php
 namespace FamilyTask\Entity;
+use Doctrine\ORM\Mapping AS ORM;
 
 /**
- * The family class
- * @Entity
+ * @ORM\Entity
+ * @Table(name="family")
+ * @FamilyTask\Annotations\Family
  */
 class Family
 {
-    
+
     /**
      * @var int
      * @Id @Column(type="integer") @GeneratedValued
