@@ -3,10 +3,11 @@ namespace FamilyTask\Entity;
 
 /**
  * The family class
+ * @Entity
  */
 class Family
 {
-
+    
     /**
      * @var int
      * @Id @Column(type="integer") @GeneratedValued
