@@ -14,6 +14,7 @@ $app->register(new DoctrineServiceProvider, [
         "driver" => "pdo_mysql",
         "user" => "root",
         "password" => "",
+        "dbname" => "familytask",
     ],
 ]);
 
@@ -22,6 +23,7 @@ $app->register(new DoctrineOrmServiceProvider, [
     "orm.em.options" => [
         "mappings" => [
             [
+                "alias" => "FamilyTask",
                 "type" => "annotation",
                 "use_simple_annotation_reader" => false,
                 "namespace" => "FamilyTask\\Entity",

@@ -1,11 +1,11 @@
 <?php
 namespace FamilyTask\Entity;
+
 use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * @ORM\Entity
  * @Table(name="family")
- * @FamilyTask\Annotations\Family
  */
 class Family
 {
