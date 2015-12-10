@@ -2,6 +2,8 @@
 use Silex\Application;
 use Silex\Provider\DoctrineServiceProvider;
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
+use Saxulum\Console\Silex\Provider\ConsoleProvider;
 
 $loader = require __DIR__ . '/../vendor/autoload.php';
 \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
@@ -33,6 +35,8 @@ $app->register(new DoctrineOrmServiceProvider, [
     ],
 ]);
 
+$app->register(new ConsoleProvider());
+$app->register(new DoctrineOrmManagerRegistryProvider());
 $app->register(new Sorien\Provider\PimpleDumpProvider());
 
 $app->post('/family', 'FamilyTask\Controller\FamilyController::createAction');
