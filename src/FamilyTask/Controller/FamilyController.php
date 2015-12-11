@@ -20,6 +20,10 @@ class FamilyController
      */
     public function createAction(Request $request, Application $app)
     {
+//        $family = $app['orm.em']->find('FamilyTask:Family', 1);
+//        var_dump($family); die;
+//        $app['doctrine']->getConnection();
+
         return 'hi';
     }
 }
