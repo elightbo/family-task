@@ -5,20 +5,20 @@ use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * @ORM\Entity
- * @Table(name="family")
+ * @ORM\Table(name="family")
  */
 class Family
 {
 
     /**
      * @var int
-     * @Id @Column(type="integer") @GeneratedValued
+     * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
      */
     protected $id;
 
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     protected $name;
 
