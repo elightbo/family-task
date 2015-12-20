@@ -3,6 +3,8 @@ namespace FamilyTask\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Hateoas\Representation\CollectionRepresentation;
 
 /**
  * Family controller
@@ -20,9 +22,12 @@ class FamilyController
      * @param Application $app
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function getAllAction(Request $request, Application $app)
+    public function getFamilies(Request $request, Application $app)
     {
-        $families = $app['orm.em']->getRepository('FamilyTask:Family')->findAll();
-        return $app->json($families);
+        return new Response(
+            $app['serializer']->serialize(
+                new CollectionRepresentation($app['orm.em']->getRepository('FamilyTask:Family')->findAll()),
+                'json'
+            ));
     }
 }

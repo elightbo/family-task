@@ -2,12 +2,17 @@
 namespace FamilyTask\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
+use JMS\Serializer\Annotation as Serializer;
+use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
+ *
+ * @Hateoas\Relation("self", href = "expr('/users/' ~ object.getId())")
+ *
  * @ORM\Entity
  * @ORM\Table(name="family")
  */
-class Family implements \JsonSerializable
+class Family
 {
 
     /**
@@ -46,16 +51,5 @@ class Family implements \JsonSerializable
         $this->name = $name;
     }
 
-    /**
-     * Give json_serialize something to work with
-     *
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name
-        ];
-    }
+
 }

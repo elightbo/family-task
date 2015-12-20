@@ -39,8 +39,13 @@ $app->register(new ConsoleProvider());
 $app->register(new DoctrineOrmManagerRegistryProvider());
 $app->register(new Sorien\Provider\PimpleDumpProvider());
 
+$app['serializer'] = $app->share(function () use ($app) {
+    return Hateoas\HateoasBuilder::create()
+        ->setDebug($app['debug'])
+        ->build();
+});
 
 // @todo: define route for getting all available actions
-$app->get('/families', 'FamilyTask\Controller\FamilyController::getAllAction');
+$app->get('/families', 'FamilyTask\Controller\FamilyController::getFamilies');
 
 return $app;
