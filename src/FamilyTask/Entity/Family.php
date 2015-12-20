@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping AS ORM;
  * @ORM\Entity
  * @ORM\Table(name="family")
  */
-class Family
+class Family implements \JsonSerializable
 {
 
     /**
@@ -44,5 +44,18 @@ class Family
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * Give json_serialize something to work with
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name
+        ];
     }
 }

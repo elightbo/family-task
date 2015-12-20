@@ -12,18 +12,17 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class FamilyController
 {
+
     /**
-     * Create a family
+     * Get a single or list of families
      *
      * @param Request $request
      * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function createAction(Request $request, Application $app)
+    public function getAllAction(Request $request, Application $app)
     {
-//        $family = $app['orm.em']->find('FamilyTask:Family', 1);
-//        var_dump($family); die;
-//        $app['doctrine']->getConnection();
-
-        return 'hi';
+        $families = $app['orm.em']->getRepository('FamilyTask:Family')->findAll();
+        return $app->json($families);
     }
 }

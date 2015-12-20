@@ -39,6 +39,8 @@ $app->register(new ConsoleProvider());
 $app->register(new DoctrineOrmManagerRegistryProvider());
 $app->register(new Sorien\Provider\PimpleDumpProvider());
 
-$app->post('/family', 'FamilyTask\Controller\FamilyController::createAction');
+
+// @todo: define route for getting all available actions
+$app->get('/families', 'FamilyTask\Controller\FamilyController::getAllAction');
 
 return $app;
