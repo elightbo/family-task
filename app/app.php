@@ -4,6 +4,8 @@ use Silex\Provider\DoctrineServiceProvider;
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use Saxulum\DoctrineOrmManagerRegistry\Silex\Provider\DoctrineOrmManagerRegistryProvider;
 use Saxulum\Console\Silex\Provider\ConsoleProvider;
+use Hateoas\UrlGenerator\SymfonyUrlGenerator;
+
 
 $loader = require __DIR__ . '/../vendor/autoload.php';
 \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
@@ -38,10 +40,13 @@ $app->register(new DoctrineOrmServiceProvider, [
 $app->register(new ConsoleProvider());
 $app->register(new DoctrineOrmManagerRegistryProvider());
 $app->register(new Sorien\Provider\PimpleDumpProvider());
+$app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 $app['serializer'] = $app->share(function () use ($app) {
     return Hateoas\HateoasBuilder::create()
+        ->setUrlGenerator(null, new SymfonyUrlGenerator($app['url_generator']))
         ->setDebug($app['debug'])
+        ->setCacheDir(__DIR__ . '/../cache')
         ->build();
 });
 

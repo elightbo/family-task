@@ -7,7 +7,15 @@ use Hateoas\Configuration\Annotation as Hateoas;
 
 /**
  *
- * @Hateoas\Relation("self", href = "expr('/users/' ~ object.getId())")
+ * @Hateoas\Relation(
+ *      "self",
+ *      href = @Hateoas\Route(
+ *          "family_get",
+ *          parameters = {
+ *              "id" = "expr(object.getId())"
+ *          }
+ *      )
+ * )
  *
  * @ORM\Entity
  * @ORM\Table(name="family")
@@ -17,12 +25,14 @@ class Family
 
     /**
      * @var int
+     *
      * @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue
      */
     protected $id;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      */
     protected $name;
