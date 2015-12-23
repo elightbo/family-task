@@ -51,6 +51,6 @@ $app['serializer'] = $app->share(function () use ($app) {
 });
 
 // @todo: define route for getting all available actions
-$app->get('/families', 'FamilyTask\Controller\FamilyController::getFamilies');
+$app->get('/families', 'FamilyTask\Controller\FamilyController::getFamilies')->bind('family_list');
 
 return $app;

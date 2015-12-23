@@ -4,8 +4,11 @@ namespace FamilyTask\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Hateoas\Representation\CollectionRepresentation;
-use Hateoas\Representation\PaginatedRepresentation;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Hateoas\Representation\Factory\PagerfantaFactory;
+use Hateoas\Configuration\Route;
+
 
 /**
  * Family controller
@@ -25,24 +28,19 @@ class FamilyController
      */
     public function getFamilies(Request $request, Application $app)
     {
+        $queryBuilder = $app['orm.em']->createQueryBuilder()
+            ->select('f')
+            ->from('FamilyTask:Family', 'f');
 
-        $families = new PaginatedRepresentation(
-            new CollectionRepresentation($app['orm.em']->getRepository('FamilyTask:Family')->findAll()),
-            'family_get', // route
-            array(), // route parameters
-            1, // page
-            20, // limit
-            4, // total pages
-            'page',  // page route parameter name, optional, defaults to 'page'
-            'limit' // limit route parameter name, optional, defaults to 'limit'
+        $adapter = new DoctrineORMAdapter($queryBuilder);
+        $pager = new Pagerfanta($adapter);
+        $pagerfantaFactory   = new PagerfantaFactory();
+
+        $paginatedCollection = $pagerfantaFactory->createRepresentation(
+            $pager,
+            new Route('family_list', array())
         );
 
-        return new Response($app['serializer']->serialize($families, 'json'));
-
-//        return new Response(
-//            $app['serializer']->serialize(
-//                new CollectionRepresentation($app['orm.em']->getRepository('FamilyTask:Family')->findAll()),
-//                'json'
-//            ));
+        return new Response($app['serializer']->serialize($paginatedCollection, 'json'));
     }
 }

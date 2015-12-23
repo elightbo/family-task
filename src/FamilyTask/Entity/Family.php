@@ -10,7 +10,7 @@ use Hateoas\Configuration\Annotation as Hateoas;
  * @Hateoas\Relation(
  *      "self",
  *      href = @Hateoas\Route(
- *          "family_get",
+ *          "family_list",
  *          parameters = {
  *              "id" = "expr(object.getId())"
  *          }

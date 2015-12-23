@@ -2,3 +2,4 @@
 .DS_Store
 pimple.json
 vendor/
+cache/

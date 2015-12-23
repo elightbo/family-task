@@ -5,7 +5,8 @@
     "saxulum/saxulum-doctrine-orm-manager-registry-provider": "^2.2",
     "saxulum/saxulum-doctrine-orm-commands": "^1.2.2",
     "saxulum/saxulum-console": "^2.2",
-    "willdurand/hateoas": "^2.9"
+    "willdurand/hateoas": "^2.9",
+    "pagerfanta/pagerfanta": "^1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "5.0.*",
