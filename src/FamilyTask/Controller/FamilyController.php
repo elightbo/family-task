@@ -34,13 +34,15 @@ class FamilyController
 
         $adapter = new DoctrineORMAdapter($queryBuilder);
         $pager = new Pagerfanta($adapter);
-        $pagerfantaFactory   = new PagerfantaFactory();
+        $pagerfantaFactory = new PagerfantaFactory();
 
         $paginatedCollection = $pagerfantaFactory->createRepresentation(
             $pager,
             new Route('family_list', array())
         );
 
-        return new Response($app['serializer']->serialize($paginatedCollection, 'json'));
+        return new Response($app['serializer']->serialize($paginatedCollection, 'json'), 200, [
+            'content-type' => 'application/json'
+        ]);
     }
 }
